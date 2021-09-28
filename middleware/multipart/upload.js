@@ -1,6 +1,6 @@
 const multer = require('multer');
 const dontenv = require('dotenv');
-const { uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const maxSize = parseInt(process.env.MAX_UPLOAD_SIZE_MB) * 1024 * 1024;
 const err_log = require('../../utility/error');
@@ -20,6 +20,7 @@ const uploadPhoto = (req, res, next) => {
         limits: { fileSize: maxSize }
     }).single('photo');
     upload(req, res, (e) => {
+        
         if(e===null || e===undefined)  return next();
         err_log('photo-upload', e.message);
         res.status(500).send({message: e.message});
