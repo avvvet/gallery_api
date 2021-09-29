@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express')
 const app = express()
+const cors = require('cors');
 const host = '127.0.0.1'
 const port = 4545
 const http = require('http').createServer(app)
@@ -10,6 +11,7 @@ const postApi = require('./api/post')
 app.use(express.json())
 app.use('/api/public', express.static(_uploadPath));
 app.use('/api/v1/posts', postApi)
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.status(200).send({

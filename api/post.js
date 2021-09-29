@@ -44,7 +44,7 @@ router.get('/', async (req,res) => {
     }
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/', (req, res) => {
     models.Post.destroy(
         {
             where : {}
